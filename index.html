@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ELITE EARNER</title>
+<style>
+:root{
+  --bg:#06050A;--s1:#0E0C18;--s2:#14111F;--s3:#1C1928;--s4:#252233;
+  --gd:#F0C040;--gd2:#C8971A;--gd3:#FFD97A;--gda:rgba(240,192,64,.12);
+  --tx:#F4F0FF;--tx2:#8A85A0;--tx3:#4A4560;
+  --rd:#FF3366;--gr:#00D465;--bl:#5599FF;--yw:#FFAA22;--pu:#AA77FF;
+  --bd:#1E1B2E;--r:14px;--r2:10px;--r3:7px;
+  padding-top:env(safe-area-inset-top,0);
+  padding-bottom:env(safe-area-inset-bottom,0);
+  box-sizing:border-box;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+#app{min-height:100vh}
+.hdr{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(6,5,10,.92);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);
+  padding:0 16px;height:56px;
+  padding-top:env(safe-area-inset-top,0);
+  height:calc(56px + env(safe-area-inset-top,0));
+  display:flex;align-items:flex-end;padding-bottom:8px;justify-content:space-between}
+.hdr-logo{font-size:16px;font-weight:900;letter-spacing:3px;
+  background:linear-gradient(135deg,var(--gd3),var(--gd),var(--gd2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.hdr-r{display:flex;gap:10px;align-items:center}
+.icon-btn{background:none;border:none;color:var(--tx2);font-size:18px;cursor:pointer;padding:4px;position:relative;line-height:1}
+.nbadge{position:absolute;top:-3px;right:-3px;background:var(--rd);color:#fff;
+  border-radius:50%;width:15px;height:15px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.hdr-out{background:none;border:1px solid var(--bd);color:var(--tx2);padding:5px 11px;
+  border-radius:var(--r3);cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.5px}
+.hdr-out:active{border-color:var(--gd);color:var(--gd)}
+.main{padding-top:calc(56px + env(safe-area-inset-top,0) + 4px);
+  padding-bottom:calc(68px + env(safe-area-inset-bottom,0));min-height:100vh}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(6,5,10,.95);backdrop-filter:blur(12px);
+  border-top:1px solid var(--bd);display:flex;
+  padding-bottom:env(safe-area-inset-bottom,0)}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:9px 2px;cursor:pointer;color:var(--tx3);background:none;border:none;
+  font-size:9px;letter-spacing:.3px;font-weight:600;text-transform:uppercase;transition:.15s}
+.tab.act{color:var(--gd)}
+.tab-i{font-size:19px;margin-bottom:2px}
+/* Landing */
+.lnd{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:32px 24px;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,#1C1400 0%,var(--bg) 65%)}
+.lnd-crown{font-size:48px;margin-bottom:12px;filter:drop-shadow(0 0 16px #F0C04088)}
+.lnd-logo{font-size:34px;font-weight:900;letter-spacing:5px;
+  background:linear-gradient(135deg,var(--gd3) 0%,var(--gd) 40%,var(--gd2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.lnd-tag{font-size:12px;color:var(--tx2);letter-spacing:3px;margin-bottom:52px}
+.lnd-btns{display:flex;flex-direction:column;gap:14px;width:100%;max-width:280px}
+/* Login */
+.lgn{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,#1C1400 0%,var(--bg) 65%)}
+.lgn-box{width:100%;max-width:380px;background:var(--s1);border:1px solid var(--bd);
+  border-radius:var(--r);padding:28px}
+.lgn-ico{font-size:30px;margin-bottom:10px}
+.lgn-title{font-size:21px;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(135deg,var(--gd3),var(--gd));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lgn-sub{font-size:12px;color:var(--tx2);margin-bottom:22px;line-height:1.5}
+/* Buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:13px 20px;border-radius:var(--r2);border:none;
+  font-size:13px;font-weight:700;cursor:pointer;transition:.15s;width:100%;letter-spacing:.3px}
+.btn:active{transform:scale(.98)}
+.btn-gold{background:linear-gradient(135deg,var(--gd3),var(--gd),var(--gd2));color:#0a0800}
+.btn-outline{background:transparent;border:1px solid var(--bd);color:var(--tx2)}
+.btn-outline:active{border-color:var(--gd);color:var(--gd)}
+.btn-danger{background:var(--rd);color:#fff}
+.btn-success{background:var(--gr);color:#001A0D}
+.btn-purple{background:var(--pu);color:#fff}
+.btn-blue{background:var(--bl);color:#fff}
+.btn-sm{padding:9px 14px;font-size:12px}
+.btn-xs{padding:5px 10px;font-size:11px;border-radius:var(--r3);display:inline-flex;width:auto}
+/* Inputs */
+.ig{margin-bottom:13px}
+.il{font-size:11px;color:var(--tx2);margin-bottom:5px;display:block;font-weight:600;letter-spacing:.3px}
+.inp{width:100%;background:var(--s3);border:1px solid var(--bd);color:var(--tx);
+  padding:11px 13px;border-radius:var(--r2);font-size:13px;outline:none;transition:.15s;
+  -webkit-appearance:none}
+.inp:focus{border-color:var(--gd);background:var(--s4)}
+.inp::placeholder{color:var(--tx3)}
+textarea.inp{resize:vertical;min-height:75px}
+select.inp option{background:var(--s3)}
+/* Cards */
+.card{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:16px}
+.card-gold{border-color:var(--gd2);background:linear-gradient(135deg,var(--s2),#1C1500)}
+/* Stats */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
+.sc{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center}
+.sv{font-size:21px;font-weight:800;margin-bottom:3px}
+.sl{font-size:10px;color:var(--tx2);letter-spacing:.5px}
+/* Page */
+.pg{padding:14px 16px}
+.pt{font-size:19px;font-weight:800;margin-bottom:3px;
+  background:linear-gradient(135deg,var(--gd3),var(--gd));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ps{font-size:12px;color:var(--tx2);margin-bottom:16px}
+/* Job card */
+.jc{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:15px;margin-bottom:10px}
+.jc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.jc-title{font-size:14px;font-weight:700}
+.jc-rate{font-size:20px;font-weight:900;color:var(--gd);line-height:1}
+.jc-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.bx{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.bx-g{background:#00D46518;color:var(--gr);border:1px solid #00D46530}
+.bx-r{background:#FF336618;color:var(--rd);border:1px solid #FF336630}
+.bx-y{background:#FFAA2218;color:var(--yw);border:1px solid #FFAA2230}
+.bx-b{background:#5599FF18;color:var(--bl);border:1px solid #5599FF30}
+.bx-gd{background:var(--gda);color:var(--gd);border:1px solid #F0C04030}
+.bx-p{background:#AA77FF18;color:var(--pu);border:1px solid #AA77FF30}
+.jc-desc{font-size:12px;color:var(--tx2);line-height:1.5;margin-bottom:11px}
+.jc-acts{display:flex;gap:8px}
+.jc-acts .btn{flex:1}
+/* Pay items */
+.pi{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);
+  padding:13px 15px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.pi-l h4{font-size:13px;font-weight:600}
+.pi-l p{font-size:11px;color:var(--tx2);margin-top:2px}
+.pi-r{text-align:right}
+.pi-amt{font-size:17px;font-weight:800;color:var(--gd)}
+/* List */
+.li{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:13px 15px;margin-bottom:8px}
+.li h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.li p{font-size:11px;color:var(--tx2);line-height:1.4}
+.li-acts{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+/* Worker row */
+.wr{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r2);
+  padding:11px 13px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+.wr-l h4{font-size:12px;font-weight:700}
+.wr-l p{font-size:10px;color:var(--tx2);margin-top:1px}
+.wr-r{display:flex;gap:6px;align-items:center}
+/* Toast */
+.tc{position:fixed;top:calc(60px + env(safe-area-inset-top,0));right:12px;z-index:999;
+  display:flex;flex-direction:column;gap:7px;pointer-events:none;max-width:280px}
+.tst{background:var(--s2);border-left:3px solid var(--gd);border-radius:var(--r2);
+  padding:11px 14px;font-size:12px;pointer-events:auto;
+  animation:tsin .25s ease;box-shadow:0 4px 24px rgba(0,0,0,.7)}
+.tst.err{border-color:var(--rd)}.tst.ok{border-color:var(--gr)}
+@keyframes tsin{from{transform:translateX(110%);opacity:0}to{transform:none;opacity:1}}
+/* Modal */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;
+  display:flex;align-items:flex-end;justify-content:center}
+.mdl{background:var(--s1);border:1px solid var(--bd);
+  border-radius:var(--r) var(--r) 0 0;padding:22px 20px;
+  width:100%;max-width:500px;max-height:88vh;overflow-y:auto}
+.mdl-t{font-size:17px;font-weight:800;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--gd3),var(--gd));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mdl-acts{display:flex;gap:9px;margin-top:14px}
+.mdl-acts .btn{flex:1}
+/* Notif panel */
+.np{position:fixed;top:calc(58px + env(safe-area-inset-top,0));right:0;
+  width:300px;max-height:70vh;background:var(--s1);border:1px solid var(--bd);
+  border-radius:var(--r) 0 0 var(--r);overflow-y:auto;z-index:300;
+  box-shadow:0 8px 40px rgba(0,0,0,.8)}
+.ni{padding:11px 14px;border-bottom:1px solid var(--bd);font-size:12px;cursor:pointer}
+.ni.unr{background:var(--gda)}
+.ni-t{font-size:10px;color:var(--tx3);margin-top:3px}
+/* Divider */
+.dv{height:1px;background:var(--bd);margin:13px 0}
+/* Empty */
+.emp{text-align:center;padding:44px 16px;color:var(--tx2)}
+.emp-i{font-size:36px;margin-bottom:10px}
+/* Proof img */
+.pimg{width:100%;max-height:180px;object-fit:cover;border-radius:var(--r2);margin:7px 0}
+/* Timer */
+.tmr{font-family:monospace;font-size:15px;font-weight:700;color:var(--yw)}
+.tmr.urg{color:var(--rd)}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:0 16px;margin-bottom:8px}
+.sec-t{font-size:15px;font-weight:700}
+.bal-hd{background:linear-gradient(135deg,var(--s2),#1C1500);border-bottom:1px solid var(--gd2);
+  padding:18px 16px;display:flex;justify-content:space-between;align-items:center}
+.bal-lbl{font-size:11px;color:var(--tx2);letter-spacing:.5px;margin-bottom:4px}
+.bal-val{font-size:28px;font-weight:900;color:var(--gd)}
+.bal-sub{font-size:11px;color:var(--tx2);margin-top:2px}
+.proof-preview{width:100%;height:160px;background:var(--s3);border:2px dashed var(--bd);
+  border-radius:var(--r2);display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;font-size:12px;color:var(--tx2);cursor:pointer;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="tc" id="tc"></div>
+
+<script>
+// ─── OWNER CREDENTIALS (obfuscated) ───
+const _OA=[78,79,86,65,45,79,87,78,83,45,49,56,48,55];
+const _OB=[78,79,86,65,45,79,87,78,83,45,49,56,49,48];
+const _chkO=(a,b)=>a===String.fromCharCode(..._OA)&&b===String.fromCharCode(..._OB);
+
+// ─── DB ───
+const DB={
+  g:(k,d=null)=>{try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):d}catch{return d}},
+  s:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
+  workers:()=>DB.g('ee_w',[]),
+  sw:(w)=>DB.s('ee_w',w),
+  jobs:()=>DB.g('ee_j',[]),
+  sj:(j)=>DB.s('ee_j',j),
+  subs:()=>DB.g('ee_s',[]),
+  ss:(s)=>DB.s('ee_s',s),
+  pays:()=>DB.g('ee_p',[]),
+  sp:(p)=>DB.s('ee_p',p),
+  agents:()=>DB.g('ee_a',[]),
+  sa:(a)=>DB.s('ee_a',a),
+  notifs:(uid)=>DB.g('ee_n_'+uid,[]),
+  addN:(uid,msg,type='info')=>{
+    const n=DB.notifs(uid);
+    n.unshift({id:Date.now()+(Math.random()*100|0),msg,type,time:Date.now(),read:false});
+    DB.s('ee_n_'+uid,n.slice(0,80));
+  },
+  markNRead:(uid)=>{const n=DB.notifs(uid).map(x=>({...x,read:true}));DB.s('ee_n_'+uid,n);}
+};
+
+// ─── STATE ───
+let S={user:null,role:null,tab:'dash',modal:null,notifOpen:false};
+let _refreshTimer=null;
+
+// ─── UTILS ───
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const fmt=(n)=>'₹'+Number(n||0).toFixed(2);
+const fmtDate=(ts)=>ts?new Date(ts).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'—';
+const timeLeft=(deadline)=>{
+  const d=deadline-Date.now();
+  if(d<=0)return{s:'00:00',urgent:true,over:true};
+  const m=Math.floor(d/60000),s=Math.floor((d%60000)/1000);
+  return{s:`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`,urgent:d<300000,over:false};
+};
+const genId=(prefix,arr,field='id')=>{
+  const nums=arr.map(x=>{const m=x[field]?.match(/(\d+)$/);return m?parseInt(m[1]):0});
+  const n=(Math.max(0,...nums)+1).toString().padStart(4,'0');
+  return `${prefix}${n}`;
+};
+
+// ─── TOAST ───
+const toast=(msg,type='info')=>{
+  const tc=document.getElementById('tc');
+  const d=document.createElement('div');
+  d.className='tst '+(type==='error'?'err':type==='success'?'ok':'');
+  d.innerHTML=(type==='error'?'❌ ':type==='success'?'✅ ':'ℹ️ ')+msg;
+  tc.appendChild(d);setTimeout(()=>d.remove(),3500);
+};
+
+// ─── RESIZE IMAGE ───
+const resizeImg=(file,cb)=>{
+  const r=new FileReader();
+  r.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const c=document.createElement('canvas');
+      const max=400;
+      let w=img.width,h=img.height;
+      if(w>max){h=h*max/w;w=max;}
+      if(h>max){w=w*max/h;h=max;}
+      c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      cb(c.toDataURL('image/jpeg',.6));
+    };
+    img.src=e.target.result;
+  };
+  r.readAsDataURL(file);
+};
+
+// ─── RENDER ROOT ───
+const render=()=>{
+  if(!S.user){renderLanding();return;}
+  if(S.role==='owner'){renderOwner();return;}
+  renderWorker();
+};
+
+// ─── LANDING ───
+const renderLanding=()=>{
+  document.getElementById('app').innerHTML=`
+  <div class="lnd">
+    <div class="lnd-crown">👑</div>
+    <div class="lnd-logo">ELITE EARNER</div>
+    <div class="lnd-tag">EARN · GROW · DOMINATE</div>
+    <div class="lnd-btns">
+      <button class="btn btn-gold" onclick="showWorkerLogin()">💼 WORKER LOGIN</button>
+      <button class="btn btn-outline" onclick="showOwnerLogin()">🔐 ADMIN ACCESS</button>
+    </div>
+    <div style="margin-top:24px;font-size:11px;color:var(--tx3)">Real tasks. Real money. No tricks.</div>
+  </div>`;
+};
+window.showWorkerLogin=()=>{
+  document.getElementById('app').innerHTML=`
+  <div class="lgn">
+    <div class="lgn-box">
+      <div class="lgn-ico">💼</div>
+      <div class="lgn-title">WORKER LOGIN</div>
+      <div class="lgn-sub">Enter your Worker Key & Password provided by the admin.</div>
+      <div class="ig"><label class="il">Worker Key</label>
+        <input id="wk" class="inp" placeholder="WORK-NOVA-0001" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
+      <div class="ig"><label class="il">Password</label>
+        <input id="wp" class="inp" type="password" placeholder="Enter password"></div>
+      <button class="btn btn-gold" onclick="workerLogin()" style="margin-top:4px">LOGIN →</button>
+      <button class="btn btn-outline" onclick="renderLanding()" style="margin-top:10px">← Back</button>
+    </div>
+  </div>`;
+};
+window.workerLogin=()=>{
+  const key=document.getElementById('wk').value.trim().toUpperCase();
+  const pass=document.getElementById('wp').value;
+  const workers=DB.workers();
+  const w=workers.find(x=>x.id===key&&x.password===pass&&!x.blocked);
+  if(!w){toast('Invalid credentials or account blocked','error');return;}
+  S.user=w;S.role='worker';S.tab='dash';
+  render();
+};
+window.showOwnerLogin=()=>{
+  document.getElementById('app').innerHTML=`
+  <div class="lgn">
+    <div class="lgn-box">
+      <div class="lgn-ico">🔐</div>
+      <div class="lgn-title">ADMIN ACCESS</div>
+      <div class="lgn-sub">Authorized personnel only. Credentials are confidential.</div>
+      <div class="ig"><label class="il">Access ID</label>
+        <input id="oi" class="inp" placeholder="Enter access ID"></div>
+      <div class="ig"><label class="il">Access Password</label>
+        <input id="op" class="inp" type="password" placeholder="Enter access password"></div>
+      <button class="btn btn-gold" onclick="ownerLogin()" style="margin-top:4px">ACCESS PANEL →</button>
+      <button class="btn btn-outline" onclick="renderLanding()" style="margin-top:10px">← Back</button>
+    </div>
+  </div>`;
+};
+window.ownerLogin=()=>{
+  const i=document.getElementById('oi').value.trim();
+  const p=document.getElementById('op').value;
+  if(!_chkO(i,p)){toast('Access denied','error');return;}
+  S.user={name:'OWNER',id:'OWNER'};S.role='owner';S.tab='workers';
+  render();
+};
+window.logout=()=>{S.user=null;S.role=null;S.tab='dash';S.notifOpen=false;render();};
+
+// ─── WORKER PANEL ───
+const renderWorker=()=>{
+  const w=DB.workers().find(x=>x.id===S.user.id)||S.user;
+  S.user=w;
+  const notifs=DB.notifs(w.id);
+  const unread=notifs.filter(x=>!x.read).length;
+  const tabs=[
+    {id:'dash',i:'📊',l:'Dashboard'},
+    {id:'jobs',i:'💼',l:'Jobs'},
+    {id:'payout',i:'💸',l:'Payout'},
+    {id:'agents',i:'🤝',l:'Agents'},
+    {id:'profile',i:'👤',l:'Profile'},
+  ];
+  const agent=DB.agents().find(x=>x.workerId===w.id&&x.approved);
+  document.getElementById('app').innerHTML=`
+  <div class="hdr">
+    <div class="hdr-logo">ELITE EARNER</div>
+    <div class="hdr-r">
+      <button class="icon-btn" onclick="toggleNotif()">🔔${unread>0?`<span class="nbadge">${unread>9?'9+':unread}</span>`:''}</button>
+      <button class="hdr-out" onclick="logout()">LOGOUT</button>
+    </div>
+  </div>
+  ${S.notifOpen?notifPanel(w.id):''}
+  <div class="main" onclick="closeNotifOnOuter(event)">
+    ${S.tab==='dash'?wDash(w):S.tab==='jobs'?wJobs(w):S.tab==='payout'?wPayout(w):S.tab==='agents'?wAgents(w,agent):wProfile(w)}
+  </div>
+  <div class="tabs">
+    ${tabs.map(t=>`<button class="tab ${S.tab===t.id?'act':''}" onclick="setTab('${t.id}')"><span class="tab-i">${t.i}</span>${t.l}</button>`).join('')}
+  </div>
+  ${S.modal?renderModal():''}`;
+  if(_refreshTimer)clearInterval(_refreshTimer);
+  _refreshTimer=setInterval(()=>{if(S.role==='worker')renderWorker();},15000);
+};
+window.setTab=(t)=>{S.tab=t;S.modal=null;S.notifOpen=false;renderWorker();};
+window.toggleNotif=()=>{S.notifOpen=!S.notifOpen;if(S.notifOpen)DB.markNRead(S.user.id);renderWorker();};
+window.closeNotifOnOuter=(e)=>{if(S.notifOpen&&!e.target.closest('.np')&&!e.target.closest('.icon-btn')){S.notifOpen=false;renderWorker();}};
+
+const notifPanel=(uid)=>{
+  const ns=DB.notifs(uid);
+  return `<div class="np">
+    <div style="padding:12px 14px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center">
+      <b style="font-size:13px">🔔 Notifications</b>
+      <button onclick="clearNotifs('${uid}')" style="background:none;border:none;color:var(--tx3);font-size:11px;cursor:pointer">Clear all</button>
+    </div>
+    ${ns.length===0?'<div class="emp" style="padding:24px"><div class="emp-i">🔕</div>No notifications</div>':
+    ns.map(n=>`<div class="ni ${n.read?'':'unr'}">
+      ${n.msg}<div class="ni-t">${fmtDate(n.time)}</div>
+    </div>`).join('')}
+  </div>`;
+};
+window.clearNotifs=(uid)=>{DB.s('ee_n_'+uid,[]);renderWorker();};
+
+// ─── DASHBOARD ───
+const wDash=(w)=>{
+  const subs=DB.subs().filter(x=>x.workerId===w.id);
+  const done=subs.filter(x=>x.status==='approved').length;
+  const fail=subs.filter(x=>x.status==='rejected').length;
+  const pend=subs.filter(x=>x.status==='pending').length;
+  const pays=DB.pays().filter(x=>x.workerId===w.id);
+  const withdrawn=pays.filter(x=>x.status==='paid').reduce((a,x)=>a+x.amount,0);
+  const pendPay=pays.filter(x=>x.status==='pending').reduce((a,x)=>a+x.amount,0);
+  return `
+  <div class="bal-hd">
+    <div><div class="bal-lbl">AVAILABLE BALANCE</div><div class="bal-val">${fmt(w.balance)}</div>
+    <div class="bal-sub">💰 Total Earned: ${fmt(w.totalEarned)}</div></div>
+    <div style="text-align:right"><div class="bal-lbl">WITHDRAWN</div>
+    <div style="font-size:18px;font-weight:700;color:var(--gr)">${fmt(withdrawn)}</div>
+    <div class="bal-sub">⏳ Pending: ${fmt(pendPay)}</div></div>
+  </div>
+  <div class="sg">
+    <div class="sc"><div class="sv" style="color:var(--gr)">${done}</div><div class="sl">✅ Completed</div></div>
+    <div class="sc"><div class="sv" style="color:var(--yw)">${pend}</div><div class="sl">⏳ Pending</div></div>
+    <div class="sc"><div class="sv" style="color:var(--rd)">${fail}</div><div class="sl">❌ Failed</div></div>
+    <div class="sc"><div class="sv" style="color:var(--bl)">${subs.length}</div><div class="sl">📋 Total Jobs</div></div>
+  </div>
+  <div class="pg" style="padding-top:0">
+    <div class="card" style="margin-bottom:10px">
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:10px;font-weight:600">RECENT ACTIVITY</div>
+      ${subs.slice(-5).reverse().map(s=>{
+        const j=DB.jobs().find(x=>x.id===s.jobId);
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)">
+          <div><div style="font-size:12px;font-weight:600">${j?.title||'Unknown Job'}</div>
+          <div style="font-size:10px;color:var(--tx2)">${fmtDate(s.submittedAt||s.takenAt)}</div></div>
+          <span class="bx ${s.status==='approved'?'bx-g':s.status==='rejected'?'bx-r':'bx-y'}">${s.status.toUpperCase()}</span>
+        </div>`;
+      }).join('')||'<div class="emp" style="padding:16px"><div class="emp-i">📋</div>No activity yet</div>'}
+    </div>
+  </div>`;
+};
+
+// ─── JOBS ───
+const wJobs=(w)=>{
+  const jobs=DB.jobs().filter(x=>x.active&&(x.expiry===0||x.expiry>Date.now())&&x.slotsLeft>0);
+  const mySubs=DB.subs().filter(x=>x.workerId===w.id);
+  const myActive=mySubs.find(x=>x.status==='taken');
+  const myPending=mySubs.filter(x=>x.status==='pending');
+  const myDone=mySubs.filter(x=>['approved','rejected'].includes(x.status));
+
+  let html=`<div class="pg">
+  <div class="pt">Available Jobs</div>
+  <div class="ps">Take a job, complete it and submit proof within 30 minutes.</div>`;
+
+  if(myActive){
+    const j=DB.jobs().find(x=>x.id===myActive.jobId)||{title:'Unknown',description:'',rate:0};
+    const tl=timeLeft(myActive.deadline);
+    html+=`<div class="card card-gold" style="margin-bottom:14px">
+      <div style="font-size:11px;color:var(--gd2);font-weight:700;letter-spacing:1px;margin-bottom:8px">⚡ ACTIVE JOB</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px">${j.title}</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:10px">${j.description}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><div style="font-size:10px;color:var(--tx2)">Time Left</div>
+        <div class="tmr ${tl.urgent?'urg':''}">${tl.s}</div></div>
+        <div style="text-align:right"><div style="font-size:10px;color:var(--tx2)">Reward</div>
+        <div style="font-size:18px;font-weight:800;color:var(--gd)">${fmt(j.rate)}</div></div>
+      </div>
+      ${tl.over?'<div style="color:var(--rd);font-size:12px;margin-bottom:8px">⚠️ Time expired! Job will be auto-released.</div>':''}
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-gold btn-sm" onclick="openSubmitProof('${myActive.id}','${j.id}')" style="flex:1">📸 Submit Proof</button>
+        <button class="btn btn-danger btn-sm" onclick="releaseJob('${myActive.id}')" style="flex:1">🔄 Release</button>
+      </div>
+      ${j.tutorial?`<div class="dv"></div><div style="font-size:11px;color:var(--tx2)"><b>Tutorial:</b> ${j.tutorial}</div>`:''}
+    </div>`;
+    if(tl.over){setTimeout(()=>releaseJob(myActive.id,true),500);}
+  }
+
+  if(myPending.length){
+    html+=`<div style="font-size:12px;color:var(--tx2);padding:0 0 8px;font-weight:600">⏳ PENDING REVIEW (${myPending.length})</div>`;
+    myPending.forEach(s=>{
+      const j=DB.jobs().find(x=>x.id===s.jobId)||{title:'Unknown',rate:0};
+      html+=`<div class="jc" style="border-color:var(--yw)40">
+        <div class="jc-top"><div class="jc-title">${j.title}</div><span class="bx bx-y">PENDING</span></div>
+        <div style="font-size:11px;color:var(--tx2)">Submitted: ${fmtDate(s.submittedAt)} · Reward: ${fmt(j.rate)}</div>
+      </div>`;
+    });
+  }
+
+  if(myDone.length){
+    html+=`<div style="font-size:12px;color:var(--tx2);padding:8px 0;font-weight:600">📋 JOB HISTORY</div>`;
+    myDone.slice(0,5).forEach(s=>{
+      const j=DB.jobs().find(x=>x.id===s.jobId)||{title:'Unknown',rate:0};
+      html+=`<div class="jc">
+        <div class="jc-top"><div class="jc-title">${j.title}</div>
+        <span class="bx ${s.status==='approved'?'bx-g':'bx-r'}">${s.status==='approved'?'✅ APPROVED':'❌ REJECTED'}</span></div>
+        <div style="font-size:11px;color:var(--tx2)">${fmt(j.rate)} · ${fmtDate(s.submittedAt)}</div>
+        ${s.rejectReason?`<div style="font-size:11px;color:var(--rd);margin-top:4px">Reason: ${s.rejectReason}</div>`:''}
+      </div>`;
+    });
+  }
+
+  if(!myActive){
+    html+=`<div class="dv"></div><div style="font-size:12px;color:var(--gd);font-weight:700;margin-bottom:10px">🟢 AVAILABLE JOBS (${jobs.length})</div>`;
+    if(!jobs.length){
+      html+=`<div class="emp"><div class="emp-i">📭</div>No jobs available right now.<br>Check back soon!</div>`;
+    } else {
+      jobs.forEach(j=>{
+        const exp=j.expiry>0?Math.max(0,Math.ceil((j.expiry-Date.now())/60000)):null;
+        html+=`<div class="jc">
+          <div class="jc-top">
+            <div class="jc-title">${j.title}</div>
+            <div class="jc-rate">${fmt(j.rate)}</div>
+          </div>
+          <div class="jc-meta">
+            <span class="bx bx-g">🎰 ${j.slotsLeft}/${j.slots} slots</span>
+            ${exp!==null?`<span class="bx bx-y">⏱ ${exp}m left</span>`:'<span class="bx bx-b">No expiry</span>'}
+          </div>
+          <div class="jc-desc">${j.description}</div>
+          <button class="btn btn-gold btn-sm" onclick="takeJob('${j.id}')">🚀 Take Job</button>
+        </div>`;
+      });
+    }
+  }
+  return html+'</div>';
+};
+
+window.takeJob=(jid)=>{
+  const w=S.user;
+  const mySubs=DB.subs();
+  if(mySubs.find(x=>x.workerId===w.id&&x.status==='taken')){toast('Release your current job first','error');return;}
+  const jobs=DB.jobs();
+  const ji=jobs.findIndex(x=>x.id===jid);
+  if(ji===-1||jobs[ji].slotsLeft<=0){toast('Job no longer available','error');return;}
+  jobs[ji].slotsLeft--;
+  DB.sj(jobs);
+  const sub={id:uid(),jobId:jid,workerId:w.id,status:'taken',
+    takenAt:Date.now(),deadline:Date.now()+30*60*1000,proof:null,submittedAt:null};
+  mySubs.push(sub);DB.ss(mySubs);
+  DB.addN(w.id,`You took job: ${jobs[ji].title}. Complete within 30 minutes!`,'info');
+  toast('Job taken! Submit proof within 30 minutes ✅','success');
+  renderWorker();
+};
+
+window.releaseJob=(subId,auto=false)=>{
+  const subs=DB.subs();
+  const si=subs.findIndex(x=>x.id===subId);
+  if(si===-1)return;
+  const s=subs[si];
+  const jobs=DB.jobs();
+  const ji=jobs.findIndex(x=>x.id===s.jobId);
+  if(ji!==-1){jobs[ji].slotsLeft=Math.min(jobs[ji].slots,jobs[ji].slotsLeft+1);DB.sj(jobs);}
+  subs.splice(si,1);DB.ss(subs);
+  if(!auto)toast('Job released','info');
+  renderWorker();
+};
+
+window.openSubmitProof=(subId,jobId)=>{
+  S.modal={type:'proof',subId,jobId};renderWorker();
+};
+
+// ─── PAYOUT ───
+const wPayout=(w)=>{
+  const pays=DB.pays().filter(x=>x.workerId===w.id);
+  return `<div class="pg">
+  <div class="pt">Payout</div>
+  <div class="ps">Minimum withdrawal: ₹20</div>
+  <div class="card card-gold" style="margin-bottom:14px">
+    <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">AVAILABLE TO WITHDRAW</div>
+    <div style="font-size:30px;font-weight:900;color:var(--gd)">${fmt(w.balance)}</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:var(--gd);margin-bottom:12px">REQUEST WITHDRAWAL</div>
+    <div class="ig"><label class="il">UPI ID</label>
+      <input id="upi" class="inp" placeholder="yourname@upi" value="${w.upiId||''}"></div>
+    <div class="ig"><label class="il">Amount (₹)</label>
+      <input id="wamt" class="inp" type="number" placeholder="Min ₹20" min="20" max="${w.balance}"></div>
+    <button class="btn btn-gold" onclick="requestPay()">💸 Request Withdrawal</button>
+  </div>
+  <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:10px">PAYMENT HISTORY</div>
+  ${pays.length===0?`<div class="emp"><div class="emp-i">💳</div>No payment history</div>`:
+  pays.reverse().map(p=>`<div class="pi">
+    <div class="pi-l">
+      <h4>${p.upiId}</h4>
+      <p>${fmtDate(p.requestedAt)}</p>
+      ${p.note?`<p style="color:var(--rd)">${p.note}</p>`:''}
+    </div>
+    <div class="pi-r">
+      <div class="pi-amt">${fmt(p.amount)}</div>
+      <span class="bx ${p.status==='paid'?'bx-g':p.status==='rejected'?'bx-r':'bx-y'}" style="margin-top:4px">
+        ${p.status==='paid'?'✅ PAID':p.status==='rejected'?'❌ REJECTED':'⏳ PENDING'}
+      </span>
+    </div>
+  </div>`).join('')}
+  </div>`;
+};
+
+window.requestPay=()=>{
+  const w=S.user;
+  const upi=document.getElementById('upi').value.trim();
+  const amt=parseFloat(document.getElementById('wamt').value);
+  if(!upi){toast('Enter UPI ID','error');return;}
+  if(!amt||amt<20){toast('Minimum withdrawal is ₹20','error');return;}
+  if(amt>w.balance){toast('Insufficient balance','error');return;}
+  // Save UPI to worker profile
+  const workers=DB.workers();
+  const wi=workers.findIndex(x=>x.id===w.id);
+  if(wi!==-1){workers[wi].upiId=upi;workers[wi].balance-=amt;DB.sw(workers);S.user=workers[wi];}
+  const pays=DB.pays();
+  pays.push({id:'PAY-'+uid(),workerId:w.id,amount:amt,upiId:upi,
+    status:'pending',requestedAt:Date.now(),note:''});
+  DB.sp(pays);
+  DB.addN(w.id,`Withdrawal request of ${fmt(amt)} submitted. Awaiting approval.`,'info');
+  toast('Withdrawal request submitted ✅','success');
+  renderWorker();
+};
+
+// ─── AGENTS ───
+const wAgents=(w,agent)=>{
+  const myAgent=DB.agents().find(x=>x.workerId===w.id);
+  if(agent){
+    // Agent panel
+    const team=DB.workers().filter(x=>agent.teamWorkers.includes(x.id));
+    const teamSubs=DB.subs().filter(x=>agent.teamWorkers.includes(x.workerId));
+    const teamEarned=team.reduce((a,x)=>a+x.balance,0);
+    const teamPays=DB.pays().filter(x=>agent.teamWorkers.includes(x.workerId));
+    return `<div class="pg">
+    <div class="pt">Agent Panel</div>
+    <div class="ps">Agent ID: <b style="color:var(--gd)">${agent.agentId}</b></div>
+    <div class="sg" style="padding:0 0 12px">
+      <div class="sc"><div class="sv" style="color:var(--gd)">${fmt(teamEarned)}</div><div class="sl">Team Balance</div></div>
+      <div class="sc"><div class="sv">${team.length}/200</div><div class="sl">Team Members</div></div>
+      <div class="sc"><div class="sv" style="color:var(--gr)">${teamSubs.filter(x=>x.status==='approved').length}</div><div class="sl">Completed</div></div>
+      <div class="sc"><div class="sv" style="color:var(--rd)">${teamSubs.filter(x=>x.status==='rejected').length}</div><div class="sl">Rejected</div></div>
+    </div>
+    <button class="btn btn-gold" onclick="agentWithdraw('${agent.id}')" style="margin-bottom:12px">💸 Withdraw Team Earnings (${fmt(teamEarned)})</button>
+    <button class="btn btn-outline btn-sm" onclick="showAddWorkerModal('${agent.id}')" style="margin-bottom:12px">➕ Add Worker to Team</button>
+    <div class="sec-hd" style="padding:0;margin-bottom:8px"><div class="sec-t">Team Members</div></div>
+    ${team.length===0?`<div class="emp"><div class="emp-i">👥</div>No team members yet</div>`:
+    team.map(m=>`<div class="wr">
+      <div class="wr-l">
+        <h4>${m.name||m.id} <span class="bx ${m.blocked?'bx-r':'bx-g'}" style="font-size:9px">${m.blocked?'BLOCKED':'ACTIVE'}</span></h4>
+        <p>${m.id} · Balance: ${fmt(m.balance)}</p>
+      </div>
+      <div class="wr-r">
+        <button class="btn-xs btn-danger" onclick="agentBlockWorker('${agent.id}','${m.id}','${m.blocked}')">${m.blocked?'Unblock':'Block'}</button>
+        <button class="btn-xs btn-outline" onclick="agentRemoveWorker('${agent.id}','${m.id}')">Remove</button>
+      </div>
+    </div>`).join('')}
+    <div class="dv"></div>
+    <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:8px">TEAM PAYMENT HISTORY</div>
+    ${teamPays.slice(0,10).map(p=>`<div class="pi">
+      <div class="pi-l"><h4>${DB.workers().find(x=>x.id===p.workerId)?.name||p.workerId}</h4><p>${fmtDate(p.requestedAt)}</p></div>
+      <div class="pi-r"><div class="pi-amt">${fmt(p.amount)}</div>
+      <span class="bx ${p.status==='paid'?'bx-g':p.status==='rejected'?'bx-r':'bx-y'}">${p.status.toUpperCase()}</span></div>
+    </div>`).join('')||'<div style="color:var(--tx2);font-size:12px">No payments yet</div>'}
+    </div>`;
+  }
+  return `<div class="pg">
+  <div class="pt">Agents</div>
+  <div class="ps">Become an agent to manage a team and earn more.</div>
+  <div class="card card-gold" style="margin-bottom:14px">
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">🤝 Agent Benefits</div>
+    <div style="font-size:12px;color:var(--tx2);line-height:1.7">
+      ✅ Create and manage teams up to 200 workers<br>
+      ✅ Withdraw entire team earnings<br>
+      ✅ Full team performance visibility<br>
+      ✅ Add, remove, or block team members
+    </div>
+  </div>
+  ${myAgent?
+    myAgent.approved?'':
+    `<div class="card" style="border-color:var(--yw)40;text-align:center;padding:24px">
+      <div style="font-size:24px;margin-bottom:8px">⏳</div>
+      <div style="font-weight:700;margin-bottom:4px">Request Pending</div>
+      <div style="font-size:12px;color:var(--tx2)">Your agent access request is under review by the admin.</div>
+    </div>`:
+    `<button class="btn btn-gold" onclick="requestAgent()">🚀 Request Agent Access</button>`}
+  </div>`;
+};
+
+window.requestAgent=()=>{
+  const w=S.user;
+  const agents=DB.agents();
+  if(agents.find(x=>x.workerId===w.id)){toast('Request already submitted','error');return;}
+  agents.push({id:uid(),agentId:'',workerId:w.id,approved:false,
+    teamWorkers:[],createdAt:Date.now()});
+  DB.sa(agents);
+  toast('Agent access requested! Admin will review.','success');
+  renderWorker();
+};
+
+window.agentWithdraw=(agentId)=>{
+  const agents=DB.agents();
+  const ag=agents.find(x=>x.id===agentId);
+  if(!ag)return;
+  const workers=DB.workers();
+  const teamTotal=workers.filter(x=>ag.teamWorkers.includes(x.id)).reduce((a,x)=>a+x.balance,0);
+  if(teamTotal<20){toast('Team balance must be at least ₹20','error');return;}
+  const agWorker=workers.find(x=>x.id===ag.workerId);
+  if(!agWorker?.upiId){S.modal={type:'agentWithdraw',agentId};renderWorker();return;}
+  _doAgentWithdraw(agentId,agWorker.upiId,teamTotal);
+};
+window._doAgentWithdraw=(agentId,upiId,amount)=>{
+  const agents=DB.agents();
+  const ag=agents.find(x=>x.id===agentId);
+  const workers=DB.workers();
+  ag.teamWorkers.forEach(wid=>{
+    const wi=workers.findIndex(x=>x.id===wid);
+    if(wi!==-1)workers[wi].balance=0;
+  });
+  DB.sw(workers);
+  const pays=DB.pays();
+  pays.push({id:'PAY-'+uid(),workerId:ag.workerId,amount,upiId,
+    status:'pending',requestedAt:Date.now(),note:'Team withdrawal by agent',isAgentPay:true});
+  DB.sp(pays);
+  DB.addN(ag.workerId,`Team withdrawal of ${fmt(amount)} requested.`,'info');
+  toast(`Team withdrawal of ${fmt(amount)} requested!`,'success');
+  S.modal=null;renderWorker();
+};
+
+window.agentBlockWorker=(agentId,workerId,blocked)=>{
+  const workers=DB.workers();
+  const wi=workers.findIndex(x=>x.id===workerId);
+  if(wi!==-1){workers[wi].blocked=blocked==='true'?false:true;DB.sw(workers);}
+  renderWorker();
+};
+window.agentRemoveWorker=(agentId,workerId)=>{
+  const agents=DB.agents();
+  const ai=agents.findIndex(x=>x.id===agentId);
+  if(ai!==-1){agents[ai].teamWorkers=agents[ai].teamWorkers.filter(x=>x!==workerId);DB.sa(agents);}
+  renderWorker();
+};
+window.showAddWorkerModal=(agentId)=>{S.modal={type:'addToTeam',agentId};renderWorker();};
+
+// ─── PROFILE ───
+const wProfile=(w)=>{
+  const subs=DB.subs().filter(x=>x.workerId===w.id);
+  return `<div class="pg">
+  <div style="text-align:center;padding:20px 0 14px">
+    <div style="font-size:44px;margin-bottom:8px">👤</div>
+    <div style="font-size:18px;font-weight:800">${w.name||w.id}</div>
+    <div class="bx bx-gd" style="margin:6px auto;display:inline-flex">${w.id}</div>
+  </div>
+  <div class="card" style="margin-bottom:10px">
+    <div class="dv" style="margin-top:0"></div>
+    ${[['📧 Email',w.email||'—'],['📱 Phone',w.phone||'—'],['💳 UPI ID',w.upiId||'Not set'],
+      ['📅 Joined',fmtDate(w.joinedAt)],['🏷 Username',w.username||w.id]].map(([l,v])=>
+      `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)">
+        <span style="font-size:12px;color:var(--tx2)">${l}</span>
+        <span style="font-size:12px;font-weight:600">${v}</span>
+      </div>`).join('')}
+  </div>
+  <div class="sg" style="padding:0 0 12px">
+    <div class="sc"><div class="sv" style="color:var(--gd)">${fmt(w.totalEarned)}</div><div class="sl">Total Earned</div></div>
+    <div class="sc"><div class="sv" style="color:var(--gr)">${subs.filter(x=>x.status==='approved').length}</div><div class="sl">Completed</div></div>
+    <div class="sc"><div class="sv" style="color:var(--rd)">${subs.filter(x=>x.status==='rejected').length}</div><div class="sl">Rejected</div></div>
+    <div class="sc"><div class="sv" style="color:var(--yw)">${subs.filter(x=>x.status==='pending').length}</div><div class="sl">Pending</div></div>
+  </div>
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:var(--gd);margin-bottom:12px">🔒 CHANGE PASSWORD</div>
+    <div class="ig"><label class="il">Current Password</label>
+      <input id="cp" class="inp" type="password" placeholder="Current password"></div>
+    <div class="ig"><label class="il">New Password</label>
+      <input id="np" class="inp" type="password" placeholder="New password"></div>
+    <div class="ig"><label class="il">Confirm Password</label>
+      <input id="cnp" class="inp" type="password" placeholder="Confirm new password"></div>
+    <button class="btn btn-gold btn-sm" onclick="changePass()">Update Password</button>
+  </div>
+  </div>`;
+};
+
+window.changePass=()=>{
+  const cp=document.getElementById('cp').value;
+  const np=document.getElementById('np').value;
+  const cnp=document.getElementById('cnp').value;
+  if(!cp||!np||!cnp){toast('Fill all fields','error');return;}
+  if(np!==cnp){toast('Passwords do not match','error');return;}
+  const workers=DB.workers();
+  const wi=workers.findIndex(x=>x.id===S.user.id);
+  if(workers[wi].password!==cp){toast('Current password incorrect','error');return;}
+  workers[wi].password=np;DB.sw(workers);S.user=workers[wi];
+  toast('Password updated ✅','success');renderWorker();
+};
+
+// ─── MODALS ───
+const renderModal=()=>{
+  const m=S.modal;
+  let c='';
+  if(m.type==='proof'){
+    c=`<div class="mdl-t">📸 Submit Job Proof</div>
+    <div style="font-size:12px;color:var(--tx2);margin-bottom:12px">Upload a screenshot proving you completed the task. You have 30 minutes from when you took the job.</div>
+    <input type="file" id="proofFile" accept="image/*" style="display:none" onchange="previewProof(this)">
+    <div class="proof-preview" id="proofPreview" onclick="document.getElementById('proofFile').click()">
+      <span style="font-size:24px">📷</span><span>Tap to upload screenshot</span>
+    </div>
+    <img id="proofThumb" style="display:none" class="pimg">
+    <div class="ig"><label class="il">Note / Comment</label>
+      <textarea id="proofNote" class="inp" placeholder="Add any relevant note..."></textarea></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="submitProof('${m.subId}','${m.jobId}')">Submit ✅</button>
+    </div>`;
+  } else if(m.type==='addToTeam'){
+    c=`<div class="mdl-t">➕ Add Worker to Team</div>
+    <div style="font-size:12px;color:var(--tx2);margin-bottom:12px">Create a new worker ID to add to your team, or enter an existing Worker ID.</div>
+    <div class="ig"><label class="il">Worker ID (WORK-NOVA-XXXX)</label>
+      <input id="addWid" class="inp" placeholder="WORK-NOVA-0001" oninput="this.value=this.value.toUpperCase()" style="text-transform:uppercase"></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="addToTeam('${m.agentId}')">Add Worker</button>
+    </div>`;
+  } else if(m.type==='agentWithdraw'){
+    c=`<div class="mdl-t">💸 Team Withdrawal</div>
+    <div class="ig"><label class="il">Your UPI ID</label>
+      <input id="agUpi" class="inp" placeholder="yourname@upi"></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="confirmAgentWithdraw('${m.agentId}')">Withdraw</button>
+    </div>`;
+  }
+  return `<div class="ov" onclick="closeModalOuter(event)"><div class="mdl">${c}</div></div>`;
+};
+
+window.closeModal=()=>{S.modal=null;renderWorker();};
+window.closeModalOuter=(e)=>{if(e.target.classList.contains('ov'))closeModal();};
+window.previewProof=(inp)=>{
+  if(!inp.files[0])return;
+  resizeImg(inp.files[0],(b64)=>{
+    window._proofB64=b64;
+    const t=document.getElementById('proofThumb');
+    const p=document.getElementById('proofPreview');
+    t.src=b64;t.style.display='block';p.style.display='none';
+  });
+};
+window.submitProof=(subId,jobId)=>{
+  if(!window._proofB64){toast('Please upload a screenshot','error');return;}
+  const note=document.getElementById('proofNote')?.value||'';
+  const subs=DB.subs();
+  const si=subs.findIndex(x=>x.id===subId);
+  if(si===-1){toast('Submission not found','error');return;}
+  subs[si].status='pending';subs[si].proof=window._proofB64;
+  subs[si].note=note;subs[si].submittedAt=Date.now();
+  DB.ss(subs);
+  window._proofB64=null;
+  DB.addN(S.user.id,'Proof submitted! Waiting for admin review.','info');
+  toast('Proof submitted! Admin will review soon ✅','success');
+  S.modal=null;renderWorker();
+};
+window.addToTeam=(agentId)=>{
+  const wid=document.getElementById('addWid').value.trim().toUpperCase();
+  if(!wid.startsWith('WORK-NOVA-')){toast('Invalid Worker ID format','error');return;}
+  const workers=DB.workers();
+  const w=workers.find(x=>x.id===wid);
+  if(!w){toast('Worker not found','error');return;}
+  const agents=DB.agents();
+  const ai=agents.findIndex(x=>x.id===agentId);
+  if(agents[ai].teamWorkers.includes(wid)){toast('Already in team','error');return;}
+  if(agents[ai].teamWorkers.length>=200){toast('Team is full (200 max)','error');return;}
+  agents[ai].teamWorkers.push(wid);DB.sa(agents);
+  DB.addN(wid,`You have been added to agent team by ${S.user.id}`,'info');
+  toast('Worker added to team ✅','success');S.modal=null;renderWorker();
+};
+window.confirmAgentWithdraw=(agentId)=>{
+  const upi=document.getElementById('agUpi').value.trim();
+  if(!upi){toast('Enter UPI ID','error');return;}
+  const agents=DB.agents();
+  const ag=agents.find(x=>x.id===agentId);
+  const workers=DB.workers();
+  const total=workers.filter(x=>ag.teamWorkers.includes(x.id)).reduce((a,x)=>a+x.balance,0);
+  _doAgentWithdraw(agentId,upi,total);
+};
+
+// ─── OWNER PANEL ───
+const renderOwner=()=>{
+  const pendProofs=DB.subs().filter(x=>x.status==='pending').length;
+  const pendPays=DB.pays().filter(x=>x.status==='pending').length;
+  const pendAgents=DB.agents().filter(x=>!x.approved).length;
+  const tabs=[
+    {id:'workers',i:'👥',l:'Workers'},
+    {id:'cjobs',i:'➕',l:'Create Jobs'},
+    {id:'ppay',i:'💰',l:'Payments',badge:pendPays},
+    {id:'pproofs',i:'📸',l:'Proofs',badge:pendProofs},
+    {id:'oagents',i:'🤝',l:'Agents',badge:pendAgents},
+  ];
+  document.getElementById('app').innerHTML=`
+  <div class="hdr">
+    <div class="hdr-logo">⚙️ ADMIN</div>
+    <div class="hdr-r">
+      <button class="hdr-out" onclick="logout()">LOGOUT</button>
+    </div>
+  </div>
+  <div class="main">
+    ${S.tab==='workers'?oWorkers():S.tab==='cjobs'?oCreateJob():S.tab==='ppay'?oPay():S.tab==='pproofs'?oProofs():oAgents()}
+  </div>
+  <div class="tabs">
+    ${tabs.map(t=>`<button class="tab ${S.tab===t.id?'act':''}" onclick="setOwnerTab('${t.id}')">
+      <span class="tab-i" style="position:relative">${t.i}${t.badge?`<span class="nbadge" style="font-size:7px;width:13px;height:13px">${t.badge}</span>`:''}</span>${t.l}
+    </button>`).join('')}
+  </div>
+  ${S.modal?renderOwnerModal():''}`;
+};
+window.setOwnerTab=(t)=>{S.tab=t;S.modal=null;renderOwner();};
+
+// ─── OWNER WORKERS ───
+const oWorkers=()=>{
+  const workers=DB.workers();
+  const active=workers.filter(x=>!x.blocked).length;
+  return `<div class="pg">
+  <div class="pt">Workers</div>
+  <div class="ps">Manage all registered workers</div>
+  <div class="sg" style="padding:0 0 14px">
+    <div class="sc"><div class="sv">${workers.length}</div><div class="sl">Total</div></div>
+    <div class="sc"><div class="sv" style="color:var(--gr)">${active}</div><div class="sl">Active</div></div>
+    <div class="sc"><div class="sv" style="color:var(--rd)">${workers.length-active}</div><div class="sl">Blocked</div></div>
+    <div class="sc"><div class="sv" style="color:var(--gd)">${fmt(workers.reduce((a,x)=>a+x.balance,0))}</div><div class="sl">Total Balance</div></div>
+  </div>
+  <button class="btn btn-gold" onclick="showCreateWorker()" style="margin-bottom:14px">➕ Create New Worker</button>
+  ${workers.length===0?`<div class="emp"><div class="emp-i">👥</div>No workers yet</div>`:
+  workers.map(w=>`<div class="li">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><h4>${w.name||w.id} <span class="bx ${w.blocked?'bx-r':'bx-g'}" style="font-size:9px">${w.blocked?'BLOCKED':'ACTIVE'}</span></h4>
+      <p>ID: ${w.id} · Balance: ${fmt(w.balance)} · Earned: ${fmt(w.totalEarned)}</p>
+      <p>${w.email||''} · Joined: ${fmtDate(w.joinedAt)}</p></div>
+    </div>
+    <div class="li-acts">
+      <button class="btn btn-xs ${w.blocked?'btn-success':'btn-danger'}" onclick="ownerToggleBlock('${w.id}','${w.blocked}')">${w.blocked?'Unblock':'Block'}</button>
+      <button class="btn btn-xs btn-outline" onclick="ownerAdjustBal('${w.id}')">Adjust Balance</button>
+    </div>
+  </div>`).join('')}
+  </div>`;
+};
+
+window.showCreateWorker=()=>{S.modal={type:'createWorker'};renderOwner();};
+window.ownerToggleBlock=(wid,blocked)=>{
+  const ws=DB.workers();const wi=ws.findIndex(x=>x.id===wid);
+  if(wi!==-1){ws[wi].blocked=blocked==='true'?false:true;DB.sw(ws);}
+  if(blocked!=='true')DB.addN(wid,'Your account has been blocked. Contact admin.','info');
+  renderOwner();
+};
+window.ownerAdjustBal=(wid)=>{S.modal={type:'adjustBal',wid};renderOwner();};
+
+const renderOwnerModal=()=>{
+  const m=S.modal;
+  let c='';
+  if(m.type==='createWorker'){
+    const workers=DB.workers();
+    const nextId=genId('WORK-NOVA-',workers);
+    c=`<div class="mdl-t">➕ Create Worker</div>
+    <div class="ig"><label class="il">Worker ID (Auto)</label>
+      <input id="nwid" class="inp" value="${nextId}" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
+    <div class="ig"><label class="il">Full Name</label><input id="nwname" class="inp" placeholder="Worker Name"></div>
+    <div class="ig"><label class="il">Username</label><input id="nwuser" class="inp" placeholder="username"></div>
+    <div class="ig"><label class="il">Email</label><input id="nwemail" class="inp" type="email" placeholder="email@example.com"></div>
+    <div class="ig"><label class="il">Phone</label><input id="nwphone" class="inp" placeholder="Phone number"></div>
+    <div class="ig"><label class="il">Password</label><input id="nwpass" class="inp" placeholder="Set password"></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeOwnerModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="createWorker()">Create ✅</button>
+    </div>`;
+  } else if(m.type==='adjustBal'){
+    c=`<div class="mdl-t">💰 Adjust Balance</div>
+    <div class="ig"><label class="il">Amount (positive to add, negative to deduct)</label>
+      <input id="balAdj" class="inp" type="number" placeholder="e.g. 50 or -20"></div>
+    <div class="ig"><label class="il">Reason</label><input id="balReason" class="inp" placeholder="Reason"></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeOwnerModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="doAdjustBal('${m.wid}')">Apply</button>
+    </div>`;
+  } else if(m.type==='createAgent'){
+    const agents=DB.agents();
+    const nextId=genId('AGENT-NOVA-',agents,'agentId');
+    c=`<div class="mdl-t">🤝 Create Agent</div>
+    <div class="ig"><label class="il">Worker ID</label>
+      <input id="agWid" class="inp" placeholder="WORK-NOVA-0001" oninput="this.value=this.value.toUpperCase()" style="text-transform:uppercase"></div>
+    <div class="ig"><label class="il">Agent ID (Auto)</label>
+      <input id="agId" class="inp" value="${nextId}" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
+    <div class="ig"><label class="il">Agent Password</label>
+      <input id="agPass" class="inp" placeholder="Agent password"></div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeOwnerModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="createAgent()">Create Agent ✅</button>
+    </div>`;
+  } else if(m.type==='jobDetail'){
+    const j=m.job;
+    c=`<div class="mdl-t">📋 ${j.title}</div>
+    <div style="font-size:12px;color:var(--tx2);margin-bottom:12px">${j.description}</div>
+    ${j.tutorial?`<div style="font-size:12px;margin-bottom:8px"><b>Tutorial:</b> ${j.tutorial}</div>`:''}
+    ${j.comment?`<div style="font-size:12px;margin-bottom:8px"><b>Comment:</b> ${j.comment}</div>`:''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="bx bx-gd">Rate: ${fmt(j.rate)}</span>
+      <span class="bx bx-b">Slots: ${j.slotsLeft}/${j.slots}</span>
+      <span class="bx bx-y">Expires: ${j.expiry>0?fmtDate(j.expiry):'Never'}</span>
+    </div>
+    <div class="mdl-acts">
+      <button class="btn btn-outline" onclick="closeOwnerModal()">Close</button>
+      <button class="btn btn-danger" onclick="deleteJob('${j.id}')">Delete Job</button>
+    </div>`;
+  }
+  return `<div class="ov" onclick="closeOwnerModalOuter(event)"><div class="mdl">${c}</div></div>`;
+};
+window.closeOwnerModal=()=>{S.modal=null;renderOwner();};
+window.closeOwnerModalOuter=(e)=>{if(e.target.classList.contains('ov'))closeOwnerModal();};
+
+window.createWorker=()=>{
+  const id=document.getElementById('nwid').value.trim().toUpperCase();
+  const name=document.getElementById('nwname').value.trim();
+  const username=document.getElementById('nwuser').value.trim();
+  const email=document.getElementById('nwemail').value.trim();
+  const phone=document.getElementById('nwphone').value.trim();
+  const pass=document.getElementById('nwpass').value;
+  if(!id||!name||!pass){toast('ID, Name and Password are required','error');return;}
+  const workers=DB.workers();
+  if(workers.find(x=>x.id===id)){toast('Worker ID already exists','error');return;}
+  workers.push({id,name,username,email,phone,password:pass,balance:0,totalEarned:0,
+    blocked:false,upiId:'',joinedAt:Date.now()});
+  DB.sw(workers);toast(`Worker ${id} created ✅`,'success');S.modal=null;renderOwner();
+};
+window.doAdjustBal=(wid)=>{
+  const adj=parseFloat(document.getElementById('balAdj').value);
+  const reason=document.getElementById('balReason').value;
+  if(isNaN(adj)){toast('Enter valid amount','error');return;}
+  const ws=DB.workers();const wi=ws.findIndex(x=>x.id===wid);
+  if(wi===-1)return;
+  ws[wi].balance=Math.max(0,ws[wi].balance+adj);
+  if(adj>0)ws[wi].totalEarned+=adj;
+  DB.sw(ws);
+  DB.addN(wid,`Balance adjusted by ${fmt(adj)}.${reason?' Reason: '+reason:''}`,'info');
+  toast('Balance adjusted','success');S.modal=null;renderOwner();
+};
+
+// ─── CREATE JOB ───
+const oCreateJob=()=>{
+  const jobs=DB.jobs();
+  return `<div class="pg">
+  <div class="pt">Create Jobs</div>
+  <div class="ps">Create tasks for workers to complete</div>
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:var(--gd);margin-bottom:12px">NEW JOB</div>
+    <div class="ig"><label class="il">Job Title</label><input id="jt" class="inp" placeholder="e.g. Instagram Follow Task"></div>
+    <div class="ig"><label class="il">Description</label><textarea id="jd" class="inp" placeholder="Describe what workers need to do..."></textarea></div>
+    <div class="ig"><label class="il">Tutorial (optional)</label><textarea id="jtu" class="inp" placeholder="Step-by-step instructions..."></textarea></div>
+    <div class="ig"><label class="il">Admin Comment (optional)</label><input id="jco" class="inp" placeholder="Notes for workers"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="ig"><label class="il">Rate (₹)</label><input id="jr" class="inp" type="number" placeholder="50" min="1"></div>
+      <div class="ig"><label class="il">Total Slots</label><input id="js" class="inp" type="number" placeholder="10" min="1"></div>
+    </div>
+    <div class="ig"><label class="il">Expiry (minutes, 0 = no expiry)</label><input id="je" class="inp" type="number" placeholder="60" min="0" value="60"></div>
+    <button class="btn btn-gold" onclick="createJob()">🚀 Publish Job</button>
+  </div>
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px">All Jobs (${jobs.length})</div>
+  ${jobs.length===0?`<div class="emp"><div class="emp-i">📋</div>No jobs created yet</div>`:
+  jobs.slice().reverse().map(j=>`<div class="jc">
+    <div class="jc-top">
+      <div class="jc-title">${j.title}</div>
+      <div class="jc-rate">${fmt(j.rate)}</div>
+    </div>
+    <div class="jc-meta">
+      <span class="bx ${j.active&&j.slotsLeft>0?'bx-g':'bx-r'}">${j.active&&j.slotsLeft>0?'ACTIVE':'CLOSED'}</span>
+      <span class="bx bx-b">Slots: ${j.slotsLeft}/${j.slots}</span>
+      ${j.expiry>0?`<span class="bx bx-y">${j.expiry>Date.now()?Math.ceil((j.expiry-Date.now())/60000)+'m left':'EXPIRED'}</span>`:''}
+    </div>
+    <div class="jc-acts">
+      <button class="btn btn-outline btn-xs" onclick="ownerJobDetail('${j.id}')">📋 Details</button>
+      <button class="btn btn-xs ${j.active?'btn-danger':'btn-success'}" onclick="toggleJob('${j.id}','${j.active}')">${j.active?'Deactivate':'Activate'}</button>
+      <button class="btn btn-xs btn-danger" onclick="deleteJob('${j.id}')">🗑</button>
+    </div>
+  </div>`).join('')}
+  </div>`;
+};
+
+window.createJob=()=>{
+  const title=document.getElementById('jt').value.trim();
+  const desc=document.getElementById('jd').value.trim();
+  const tut=document.getElementById('jtu').value.trim();
+  const com=document.getElementById('jco').value.trim();
+  const rate=parseFloat(document.getElementById('jr').value);
+  const slots=parseInt(document.getElementById('js').value);
+  const expMin=parseInt(document.getElementById('je').value)||0;
+  if(!title||!desc){toast('Title and description required','error');return;}
+  if(!rate||rate<=0){toast('Enter valid rate','error');return;}
+  if(!slots||slots<=0){toast('Enter valid slot count','error');return;}
+  const expiry=expMin>0?Date.now()+expMin*60*1000:0;
+  const jobs=DB.jobs();
+  const jid='JOB-'+uid();
+  jobs.push({id:jid,title,description:desc,tutorial:tut,comment:com,rate,
+    slots,slotsLeft:slots,expiry,active:true,createdAt:Date.now()});
+  DB.sj(jobs);
+  // Notify all workers
+  DB.workers().forEach(w=>DB.addN(w.id,`New job available: ${title} — ${fmt(rate)}`,'info'));
+  toast('Job published ✅ Workers notified','success');
+  document.getElementById('jt').value='';document.getElementById('jd').value='';
+  document.getElementById('jtu').value='';document.getElementById('jco').value='';
+  renderOwner();
+};
+window.toggleJob=(jid,active)=>{
+  const jobs=DB.jobs();const ji=jobs.findIndex(x=>x.id===jid);
+  if(ji!==-1){jobs[ji].active=active==='true'?false:true;DB.sj(jobs);}renderOwner();
+};
+window.deleteJob=(jid)=>{
+  const jobs=DB.jobs().filter(x=>x.id!==jid);DB.sj(jobs);
+  S.modal=null;toast('Job deleted','success');renderOwner();
+};
+window.ownerJobDetail=(jid)=>{
+  const j=DB.jobs().find(x=>x.id===jid);if(!j)return;
+  S.modal={type:'jobDetail',job:j};renderOwner();
+};
+
+// ─── PENDING PAYMENTS ───
+const oPay=()=>{
+  const pays=DB.pays().filter(x=>x.status==='pending');
+  const all=DB.pays();
+  return `<div class="pg">
+  <div class="pt">Pending Payments</div>
+  <div class="ps">${pays.length} pending · ${all.filter(x=>x.status==='paid').length} paid · ${all.filter(x=>x.status==='rejected').length} rejected</div>
+  ${pays.length===0?`<div class="emp"><div class="emp-i">✅</div>No pending payments</div>`:
+  pays.map(p=>{
+    const w=DB.workers().find(x=>x.id===p.workerId)||{name:p.workerId};
+    return `<div class="li">
+      <div style="display:flex;justify-content:space-between">
+        <div>
+          <h4>${w.name||p.workerId} ${p.isAgentPay?'<span class="bx bx-p" style="font-size:9px">AGENT</span>':''}</h4>
+          <p>ID: ${p.workerId} · UPI: ${p.upiId}</p>
+          <p>Requested: ${fmtDate(p.requestedAt)}${p.note?` · ${p.note}`:''}</p>
+        </div>
+        <div style="text-align:right;font-size:20px;font-weight:800;color:var(--gd)">${fmt(p.amount)}</div>
+      </div>
+      <div class="li-acts">
+        <button class="btn btn-xs btn-success" onclick="processPay('${p.id}','paid')">✅ Mark Paid</button>
+        <button class="btn btn-xs btn-danger" onclick="processPay('${p.id}','rejected')">❌ Reject</button>
+        <button class="btn btn-xs btn-outline" onclick="processPay('${p.id}','disabled')">🚫 Disable</button>
+      </div>
+    </div>`;
+  }).join('')}
+  <div class="dv"></div>
+  <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:10px">ALL PAYMENT HISTORY</div>
+  ${all.filter(x=>x.status!=='pending').slice().reverse().slice(0,20).map(p=>{
+    const w=DB.workers().find(x=>x.id===p.workerId)||{name:p.workerId};
+    return `<div class="pi">
+      <div class="pi-l"><h4>${w.name||p.workerId}</h4><p>${p.upiId} · ${fmtDate(p.requestedAt)}</p></div>
+      <div class="pi-r"><div class="pi-amt">${fmt(p.amount)}</div>
+      <span class="bx ${p.status==='paid'?'bx-g':'bx-r'}" style="margin-top:4px">${p.status.toUpperCase()}</span></div>
+    </div>`;
+  }).join('')||''}
+  </div>`;
+};
+
+window.processPay=(pid,status)=>{
+  const pays=DB.pays();const pi=pays.findIndex(x=>x.id===pid);if(pi===-1)return;
+  const p=pays[pi];
+  if(status==='disabled'){
+    // Refund balance
+    const ws=DB.workers();const wi=ws.findIndex(x=>x.id===p.workerId);
+    if(wi!==-1){ws[wi].balance+=p.amount;DB.sw(ws);}
+    pays[pi].status='rejected';pays[pi].note='Payment disabled by admin';
+    DB.addN(p.workerId,'Your payment was disabled. Balance refunded.','info');
+  } else {
+    pays[pi].status=status;pays[pi].processedAt=Date.now();
+    if(status==='paid'){
+      DB.addN(p.workerId,`✅ Payment of ${fmt(p.amount)} has been PAID to your UPI!`,'info');
+    } else if(status==='rejected'){
+      // Refund on rejection
+      const ws=DB.workers();const wi=ws.findIndex(x=>x.id===p.workerId);
+      if(wi!==-1){ws[wi].balance+=p.amount;DB.sw(ws);}
+      DB.addN(p.workerId,`❌ Payment of ${fmt(p.amount)} was rejected. Balance refunded.`,'info');
+    }
+  }
+  DB.sp(pays);toast('Payment updated ✅','success');renderOwner();
+};
+
+// ─── PENDING PROOFS ───
+const oProofs=()=>{
+  const subs=DB.subs().filter(x=>x.status==='pending');
+  return `<div class="pg">
+  <div class="pt">Pending Proofs</div>
+  <div class="ps">${subs.length} proofs awaiting review</div>
+  ${subs.length===0?`<div class="emp"><div class="emp-i">📭</div>No pending proofs</div>`:
+  subs.map(s=>{
+    const j=DB.jobs().find(x=>x.id===s.jobId)||{title:'Unknown',rate:0};
+    const w=DB.workers().find(x=>x.id===s.workerId)||{name:s.workerId};
+    return `<div class="li">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <div>
+          <h4>${j.title}</h4>
+          <p>Worker: ${w.name||s.workerId} (${s.workerId})</p>
+          <p>Submitted: ${fmtDate(s.submittedAt)} · Rate: ${fmt(j.rate)}</p>
+          ${s.note?`<p style="color:var(--tx)">Note: ${s.note}</p>`:''}
+        </div>
+        <span class="bx bx-gd">${fmt(j.rate)}</span>
+      </div>
+      ${s.proof?`<img src="${s.proof}" class="pimg">`:'<div style="font-size:12px;color:var(--tx3);margin:8px 0">No image attached</div>'}
+      <div class="li-acts">
+        <button class="btn btn-xs btn-success" onclick="reviewProof('${s.id}','approved')">✅ Approve</button>
+        <button class="btn btn-xs btn-danger" onclick="rejectProofPrompt('${s.id}')">❌ Reject</button>
+      </div>
+    </div>`;
+  }).join('')}
+  </div>`;
+};
+
+window.reviewProof=(subId,status,reason='')=>{
+  const subs=DB.subs();const si=subs.findIndex(x=>x.id===subId);if(si===-1)return;
+  const s=subs[si];
+  const j=DB.jobs().find(x=>x.id===s.jobId)||{rate:0,title:'Job'};
+  subs[si].status=status;subs[si].reviewedAt=Date.now();subs[si].rejectReason=reason;
+  DB.ss(subs);
+  if(status==='approved'){
+    const ws=DB.workers();const wi=ws.findIndex(x=>x.id===s.workerId);
+    if(wi!==-1){ws[wi].balance+=j.rate;ws[wi].totalEarned+=j.rate;DB.sw(ws);}
+    DB.addN(s.workerId,`✅ Job "${j.title}" approved! ${fmt(j.rate)} credited to your balance.`,'info');
+  } else {
+    DB.addN(s.workerId,`❌ Job "${j.title}" rejected.${reason?' Reason: '+reason:''}`,'info');
+    // Return slot
+    const jobs=DB.jobs();const ji=jobs.findIndex(x=>x.id===s.jobId);
+    if(ji!==-1&&status==='rejected'){jobs[ji].slotsLeft=Math.min(jobs[ji].slots,jobs[ji].slotsLeft+1);DB.sj(jobs);}
+  }
+  toast(`Proof ${status} ✅`,'success');renderOwner();
+};
+window.rejectProofPrompt=(subId)=>{
+  const r=prompt('Rejection reason (optional):');
+  reviewProof(subId,'rejected',r||'');
+};
+
+// ─── OWNER AGENTS ───
+const oAgents=()=>{
+  const agents=DB.agents();
+  const pending=agents.filter(x=>!x.approved);
+  const approved=agents.filter(x=>x.approved);
+  return `<div class="pg">
+  <div class="pt">Agent Management</div>
+  <div class="ps">Review requests and manage agents</div>
+  <button class="btn btn-gold btn-sm" onclick="showCreateAgent()" style="margin-bottom:14px">➕ Create Agent Directly</button>
+  ${pending.length>0?`
+  <div style="font-size:12px;font-weight:700;color:var(--yw);margin-bottom:8px">⏳ PENDING REQUESTS (${pending.length})</div>
+  ${pending.map(ag=>{
+    const w=DB.workers().find(x=>x.id===ag.workerId)||{name:ag.workerId};
+    const nextId=genId('AGENT-NOVA-',agents.filter(x=>x.agentId),'agentId');
+    return `<div class="li" style="border-color:var(--yw)40">
+      <h4>${w.name||ag.workerId}</h4>
+      <p>Worker ID: ${ag.workerId} · Requested: ${fmtDate(ag.createdAt)}</p>
+      <div class="li-acts">
+        <button class="btn btn-xs btn-success" onclick="approveAgent('${ag.id}','${nextId}')">✅ Approve</button>
+        <button class="btn btn-xs btn-danger" onclick="rejectAgent('${ag.id}')">❌ Reject</button>
+      </div>
+    </div>`;
+  }).join('')}`:''}
+  <div class="dv"></div>
+  <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:8px">ACTIVE AGENTS (${approved.length})</div>
+  ${approved.length===0?`<div class="emp" style="padding:24px"><div class="emp-i">🤝</div>No agents yet</div>`:
+  approved.map(ag=>{
+    const w=DB.workers().find(x=>x.id===ag.workerId)||{name:ag.workerId};
+    const subs=DB.subs().filter(x=>ag.teamWorkers.includes(x.workerId));
+    return `<div class="li">
+      <div style="display:flex;justify-content:space-between">
+        <div><h4>${w.name||ag.workerId}</h4>
+        <p>Agent ID: ${ag.agentId} · Team: ${ag.teamWorkers.length}/200 workers</p>
+        <p>✅ ${subs.filter(x=>x.status==='approved').length} completed · ❌ ${subs.filter(x=>x.status==='rejected').length} rejected</p></div>
+        <span class="bx bx-g">ACTIVE</span>
+      </div>
+      <div class="li-acts">
+        <button class="btn btn-xs btn-danger" onclick="revokeAgent('${ag.id}')">Revoke</button>
+      </div>
+    </div>`;
+  }).join('')}
+  </div>`;
+};
+
+window.showCreateAgent=()=>{S.modal={type:'createAgent'};renderOwner();};
+window.approveAgent=(agId,nextAgentId)=>{
+  const agents=DB.agents();const ai=agents.findIndex(x=>x.id===agId);if(ai===-1)return;
+  const agPass='AG-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  agents[ai].approved=true;agents[ai].agentId=nextAgentId;agents[ai].agentPass=agPass;
+  DB.sa(agents);
+  DB.addN(agents[ai].workerId,`✅ Agent access APPROVED! Your Agent ID: ${nextAgentId}`,'info');
+  toast(`Agent approved! ID: ${nextAgentId}`,'success');renderOwner();
+};
+window.rejectAgent=(agId)=>{
+  const agents=DB.agents().filter(x=>x.id!==agId);DB.sa(agents);
+  toast('Agent request rejected','success');renderOwner();
+};
+window.revokeAgent=(agId)=>{
+  const agents=DB.agents().filter(x=>x.id!==agId);DB.sa(agents);
+  toast('Agent access revoked','success');renderOwner();
+};
+window.createAgent=()=>{
+  const wid=document.getElementById('agWid').value.trim().toUpperCase();
+  const agId=document.getElementById('agId').value.trim().toUpperCase();
+  const pass=document.getElementById('agPass').value;
+  if(!wid||!agId||!pass){toast('All fields required','error');return;}
+  const w=DB.workers().find(x=>x.id===wid);
+  if(!w){toast('Worker not found','error');return;}
+  const agents=DB.agents();
+  if(agents.find(x=>x.workerId===wid)){
+    const ai=agents.findIndex(x=>x.workerId===wid);
+    agents[ai].approved=true;agents[ai].agentId=agId;agents[ai].agentPass=pass;
+    DB.sa(agents);
+  } else {
+    agents.push({id:uid(),agentId:agId,workerId:wid,approved:true,
+      agentPass:pass,teamWorkers:[],createdAt:Date.now()});
+    DB.sa(agents);
+  }
+  DB.addN(wid,`✅ You have been granted Agent access! Agent ID: ${agId}`,'info');
+  toast(`Agent created! ID: ${agId}`,'success');S.modal=null;renderOwner();
+};
+
+// ─── INIT ───
+render();
+// Auto-expire jobs
+setInterval(()=>{
+  const jobs=DB.jobs();let changed=false;
+  jobs.forEach(j=>{if(j.expiry>0&&j.expiry<Date.now()&&j.active){j.active=false;changed=true;}});
+  if(changed)DB.sj(jobs);
+},30000);
+</script>
+</body>
+</html>
